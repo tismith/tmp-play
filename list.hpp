@@ -27,9 +27,4 @@ struct MAP_REDUCE< LIST< a, TAIL>, F , R, BASE> {
     static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R, BASE >::RESULT >::VALUE;
 };
 
-template< template <int> class F , template <int, int> class R, int BASE> 
-struct MAP_REDUCE< EmptyList, F, R, BASE > {
-    static const int RESULT = BASE;
-};
-
 #endif
