@@ -15,18 +15,18 @@ template< int a > struct LIST< a, EmptyList > {
     static const int MINIMUM = a;
 };
 
-template< class TAIL, template <int> class F > 
-struct MAP_SUM {
+template< class TAIL, template <int> class F , template <int, int> class R > 
+struct MAP_REDUCE {
     static const int RESULT = 0;
 };
 
-template< int a, class TAIL, template <int> class F > 
-struct MAP_SUM< LIST< a, TAIL>, F > {
-    static const int RESULT = F< a >::VALUE + MAP_SUM< TAIL, F >::RESULT;
+template< int a, class TAIL, template <int> class F, template <int, int> class R > 
+struct MAP_REDUCE< LIST< a, TAIL>, F , R> {
+    static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R >::RESULT >::VALUE;
 };
 
-template< template <int> class F > 
-struct MAP_SUM< EmptyList, F > {
+template< template <int> class F , template <int, int> class R> 
+struct MAP_REDUCE< EmptyList, F, R > {
     static const int RESULT = 0;
 };
 
