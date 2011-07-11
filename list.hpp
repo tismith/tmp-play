@@ -20,7 +20,9 @@ struct MAP_REDUCE {
     static const int RESULT = 0;
 };
 
+//include all the template parameters that are used here
 template< int a, class TAIL, template <int> class F, template <int, int> class R > 
+//but only specialse based on what the original template defintion was
 struct MAP_REDUCE< LIST< a, TAIL>, F , R> {
     static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R >::RESULT >::VALUE;
 };
