@@ -15,5 +15,5 @@ int main(int argc, char **argv) {
     std::cout << "head = " << myList::HEAD << std::endl;
     std::cout << "sum = " << myList::SUM << std::endl;
     std::cout << "minimum = " << myList::MINIMUM << std::endl;
-    std::cout << "map_reduce = " << MAP_REDUCE< myList, SQUARE, ADDITION >::RESULT << std::endl;
+    std::cout << "map_reduce = " << MAP_REDUCE< myList, SQUARE, ADDITION, 0 >::RESULT << std::endl;
 }

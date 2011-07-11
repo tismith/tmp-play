@@ -15,21 +15,21 @@ template< int a > struct LIST< a, EmptyList > {
     static const int MINIMUM = a;
 };
 
-template< class TAIL, template <int> class F , template <int, int> class R > 
+template< class L, template <int> class F , template <int, int> class R, int BASE> 
 struct MAP_REDUCE {
-    static const int RESULT = 0;
+    static const int RESULT = BASE;
 };
 
 //include all the template parameters that are used here
-template< int a, class TAIL, template <int> class F, template <int, int> class R > 
+template< int a, class TAIL, template <int> class F, template <int, int> class R , int BASE> 
 //but only specialse based on what the original template defintion was
-struct MAP_REDUCE< LIST< a, TAIL>, F , R> {
-    static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R >::RESULT >::VALUE;
+struct MAP_REDUCE< LIST< a, TAIL>, F , R, BASE> {
+    static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R, BASE >::RESULT >::VALUE;
 };
 
-template< template <int> class F , template <int, int> class R> 
-struct MAP_REDUCE< EmptyList, F, R > {
-    static const int RESULT = 0;
+template< template <int> class F , template <int, int> class R, int BASE> 
+struct MAP_REDUCE< EmptyList, F, R, BASE > {
+    static const int RESULT = BASE;
 };
 
 #endif
