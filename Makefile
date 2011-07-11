@@ -1,4 +1,7 @@
-all: fib gcd
+all: fib gcd list
+
+list: list.cpp list.hpp
+	$(CXX) -o $@ $<
 
 fib: fib.cpp fib.hpp
 	$(CXX) -o $@ $<
@@ -8,4 +11,4 @@ gcd: gcd.cpp gcd.hpp
 
 .PHONY: clean
 clean: 
-	-rm -rf fib *.o gcd
+	-rm -rf fib *.o gcd list
