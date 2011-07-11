@@ -1,5 +1,5 @@
-#ifndef _FIB_H
-#define _FIB_H
+#ifndef _GCD_H
+#define _GCD_H
 
 template< int a, int b > struct GCD {
     static const int RESULT = GCD< b, a % b >::RESULT;
