@@ -126,10 +126,10 @@ template <int a> struct SPLIT <LIST<a,EmptyList> > {
 
 template <int a, int b, typename TAIL> 
 struct SPLIT<LIST<a, LIST<b, TAIL> > > {
-    typedef typename SPLIT<TAIL>::TYPE SPLIT_REC;
+    typedef typename SPLIT<TAIL>::TYPE _SPLIT_REC;
     typedef PAIR<
-        typename PREPEND<a, typename SPLIT_REC::FST>::TYPE, 
-        typename PREPEND<b, typename SPLIT_REC::SND>::TYPE
+        typename PREPEND<a, typename _SPLIT_REC::FST>::TYPE, 
+        typename PREPEND<b, typename _SPLIT_REC::SND>::TYPE
         > TYPE;
 };
 
@@ -158,9 +158,9 @@ struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
 //Uses the algorithm from <http://en.literateprograms.org/Merge_sort_(Haskell)>
 template < template <int, int> class P, class L >
 struct SORT {
-    typedef typename SPLIT<L>::TYPE SPLIT_LIST;
-    typedef typename SORT<P, typename SPLIT_LIST::FST>::TYPE L1;
-    typedef typename SORT<P, typename SPLIT_LIST::SND>::TYPE L2;
+    typedef typename SPLIT<L>::TYPE _SPLIT_LIST;
+    typedef typename SORT<P, typename _SPLIT_LIST::FST>::TYPE L1;
+    typedef typename SORT<P, typename _SPLIT_LIST::SND>::TYPE L2;
     typedef typename MERGE<P,L1,L2>::TYPE TYPE;
 };
 
