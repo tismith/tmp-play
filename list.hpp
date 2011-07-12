@@ -159,9 +159,9 @@ struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
 template < template <int, int> class P, class L >
 struct SORT {
     typedef typename SPLIT<L>::TYPE _SPLIT_LIST;
-    typedef typename SORT<P, typename _SPLIT_LIST::FST>::TYPE L1;
-    typedef typename SORT<P, typename _SPLIT_LIST::SND>::TYPE L2;
-    typedef typename MERGE<P,L1,L2>::TYPE TYPE;
+    typedef typename SORT<P, typename _SPLIT_LIST::FST>::TYPE _L1;
+    typedef typename SORT<P, typename _SPLIT_LIST::SND>::TYPE _L2;
+    typedef typename MERGE<P,_L1,_L2>::TYPE TYPE;
 };
 
 template < template <int, int> class P > struct SORT<P, EmptyList> {
