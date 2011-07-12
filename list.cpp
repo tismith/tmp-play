@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
     std::cout << "The list is: ";
     ListPrinter<myList>::print(); // this one generates tons of classes
     std::cout << "head = " << myList::HEAD << std::endl;
+    std::cout << "length = " << myList::LENGTH << std::endl;
     std::cout << "sum = " << myList::SUM << std::endl;
     std::cout << "minimum = " << myList::MINIMUM << std::endl;
     std::cout << "sum of squares = " << MAP_REDUCE< myList, SQUARE, ADDITION, 0 >::RESULT << std::endl;
@@ -45,5 +46,7 @@ int main(int argc, char **argv) {
     ListPrinter<PREPEND<3,myList>::TYPE>::print();
     std::cout << "tail myList = ";
     ListPrinter<TAIL<myList>::TYPE>::print();
+    std::cout << "tail myList take 2 = ";
+    ListPrinter<myList::TAIL>::print();
 }
     

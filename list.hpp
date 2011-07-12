@@ -8,14 +8,18 @@ struct EmptyList {};
 template< int a, typename L > struct LIST {
     static const int HEAD = a;
     //experimented with putting operations in the nodes
+    typedef L TAIL;
     static const int SUM = a + L::SUM;
     static const int MINIMUM = a < L::MINIMUM ? a : L::MINIMUM;
+    static const int LENGTH = 1 + L::LENGTH;
 };
 
 template< int a > struct LIST< a, EmptyList > {
     static const int HEAD = a;
+    typedef EmptyList TAIL;
     static const int SUM = a;
     static const int MINIMUM = a;
+    static const int LENGTH = 1;
 };
 
 template<int a> struct LIST1 {
