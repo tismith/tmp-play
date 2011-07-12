@@ -14,4 +14,4 @@ gcd: gcd.cpp gcd.hpp
 
 .PHONY: clean
 clean: 
-	-rm -rf fib *.o gcd list
+	-rm -rf fib *.o gcd list conditional

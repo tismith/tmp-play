@@ -28,6 +28,10 @@ template <int a, int b> struct MIN {
     static const int VALUE = a < b ? a : b;
 };
 
+template <int a, int b> struct ORD {
+    static const bool VALUE = a < b;
+};
+
 int main(int argc, char **argv) {
     std::cout << "The list is: ";
     ListPrinter<myList>::print(); // this one generates tons of classes
@@ -48,5 +52,7 @@ int main(int argc, char **argv) {
     ListPrinter<TAIL<myList>::TYPE>::print();
     std::cout << "tail myList take 2 = ";
     ListPrinter<myList::TAIL>::print();
+    std::cout << "merge (1,6,8) (6,9) = ";
+    ListPrinter<MERGE<ORD, LIST3<1,6,8>::TYPE, LIST2<6,9>::TYPE>::TYPE>::print();
 }
     

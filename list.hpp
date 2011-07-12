@@ -1,6 +1,7 @@
 #ifndef _LIST_H
 #define _LIST_H
 #include <iostream>
+#include "conditional.hpp"
 
 // basic lists and their constructors
 struct EmptyList {};
@@ -104,6 +105,36 @@ template< int a, class TAIL, template <int> class F, template <int, int> class R
 //but only specialse based on what the original template defintion was
 struct MAP_REDUCE< LIST< a, TAIL>, F , R, BASE> {
     static const int RESULT = R< F< a >::VALUE, MAP_REDUCE< TAIL, F, R, BASE >::RESULT >::VALUE;
+};
+
+// tuple data structure
+template <typename A, typename B> struct PAIR {
+    typedef A FST;
+    typedef B SND;
+};
+
+//split - splits a list into two halves -- needs a PAIR
+//template < class L > struct 
+
+//merge - take two sorted lists and return a sorted merged list -- needs an IF
+template < template <int, int> class P, class L1, class L2> struct MERGE {};
+
+template < template <int, int> class P, class L2> 
+struct MERGE< P, EmptyList, L2> {
+    typedef L2 TYPE;
+};
+
+template < template <int, int> class P, class L1> 
+struct MERGE< P, L1, EmptyList > {
+    typedef L1 TYPE;
+};
+
+template < template <int, int> class P, int A1, class TAIL1, int A2, class TAIL2> 
+struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
+    typedef typename IF< P < A1, A2 >::VALUE, 
+            PREPEND< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
+            PREPEND< A2, typename MERGE <P, LIST<A1, TAIL1>, TAIL2>::TYPE > >
+            ::TEST::TYPE TYPE;
 };
 
 #endif
