@@ -45,6 +45,17 @@ template <int a, class TAIL> struct ListPrinter<LIST<a,TAIL> > {
     }
 };
 
+// prepend
+template< int a, class L>
+struct PREPEND {
+    typedef LIST<a,EmptyList> TYPE;
+};
+
+template< int a, int b, class TAIL>
+struct PREPEND<a,LIST<b,TAIL> > {
+    typedef LIST<a, LIST< b, TAIL> > TYPE;
+};
+
 // map over lists
 template< class L, template <int> class F> 
 struct MAP {

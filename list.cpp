@@ -41,5 +41,7 @@ int main(int argc, char **argv) {
     ListPrinter<MAP<myList, SQUARE>::TYPE>::print();
     std::cout << "map increment over the list = ";
     ListPrinter<MAP<myList, INCREMENT >::TYPE>::print();
+    std::cout << "prepending '3' = ";
+    ListPrinter<PREPEND<3,myList>::TYPE>::print();
 }
     
