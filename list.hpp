@@ -2,6 +2,7 @@
 #define _LIST_H
 #include <iostream>
 
+// basic lists and their constructors
 struct EmptyList {};
 
 template< int a, typename L > struct LIST {
@@ -23,6 +24,7 @@ template<int a, int b, int c, int d> struct LIST4 {
 // alternate style list definition
 #define LIST5(a, b, c, d, e) LIST < a, LIST< b, LIST< c, LIST< d, LIST< e, EmptyList > > > > >
 
+// printing lists to std::cout
 template <class L> struct ListPrinter {
     static void print(void) {
         std::cout << std::endl;
@@ -43,6 +45,19 @@ template <int a, class TAIL> struct ListPrinter<LIST<a,TAIL> > {
     }
 };
 
+// map over lists
+template< class L, template <int> class F> 
+struct MAP {
+    typedef EmptyList TYPE;
+};
+
+template< int a, class TAIL, template <int> class F>
+struct MAP<LIST<a,TAIL>, F> {
+    //I need the typename, otherwise it thinks the MAP::TYPE is a value
+    typedef LIST< F< a >::VALUE, typename MAP<TAIL, F>::TYPE > TYPE;
+};
+
+// map reduce over lists
 template< class L, template <int> class F , template <int, int> class R, int BASE> 
 struct MAP_REDUCE {
     static const int RESULT = BASE;
