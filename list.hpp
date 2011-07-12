@@ -20,6 +20,11 @@ struct MAP_REDUCE {
     static const int RESULT = BASE;
 };
 
+template<int a, int b, int c, int d> struct LIST4 {
+    typedef LIST<a, LIST<b, LIST<c, LIST<d, EmptyList > > > > TYPE;
+};
+
+// alternate style list definition
 #define LIST5(a, b, c, d, e) LIST < a, LIST< b, LIST< c, LIST< d, LIST< e, EmptyList > > > > >
 
 //include all the template parameters that are used here
