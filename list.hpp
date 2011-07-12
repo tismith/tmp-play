@@ -7,6 +7,7 @@ struct EmptyList {};
 
 template< int a, typename L > struct LIST {
     static const int HEAD = a;
+    //experimented with putting operations in the nodes
     static const int SUM = a + L::SUM;
     static const int MINIMUM = a < L::MINIMUM ? a : L::MINIMUM;
 };
@@ -17,12 +18,21 @@ template< int a > struct LIST< a, EmptyList > {
     static const int MINIMUM = a;
 };
 
+template<int a> struct LIST1 {
+    typedef LIST<a, EmptyList > TYPE;
+};
+template<int a, int b> struct LIST2 {
+    typedef LIST<a, LIST<b, EmptyList > > TYPE;
+};
+template<int a, int b, int c> struct LIST3 {
+    typedef LIST<a, LIST<b, LIST<c, EmptyList > > > TYPE;
+};
 template<int a, int b, int c, int d> struct LIST4 {
     typedef LIST<a, LIST<b, LIST<c, LIST<d, EmptyList > > > > TYPE;
 };
-
-// alternate style list definition
-#define LIST5(a, b, c, d, e) LIST < a, LIST< b, LIST< c, LIST< d, LIST< e, EmptyList > > > > >
+template<int a, int b, int c, int d, int e> struct LIST5 {
+    typedef LIST<a, LIST<b, LIST<c, LIST<d, LIST<e EmptyList > > > > > TYPE;
+};
 
 // printing lists to std::cout
 template <class L> struct ListPrinter {
@@ -54,6 +64,17 @@ struct PREPEND {
 template< int a, int b, class TAIL>
 struct PREPEND<a,LIST<b,TAIL> > {
     typedef LIST<a, LIST< b, TAIL> > TYPE;
+};
+
+// tail
+template<class L> 
+struct TAIL {
+    typedef EmptyList TYPE;
+};
+
+template<int a, class T> 
+struct TAIL<LIST<a,T> > {
+    typedef T TYPE;
 };
 
 // map over lists
