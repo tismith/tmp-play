@@ -1,4 +1,7 @@
-all: fib gcd list
+all: fib gcd list conditional
+
+conditional: conditional.cpp conditional.hpp
+	$(CXX) -o $@ $<
 
 list: list.cpp list.hpp
 	$(CXX) -o $@ $<
