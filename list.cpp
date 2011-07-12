@@ -2,7 +2,7 @@
 #include <climits>
 #include "list.hpp"
 
-#define myList LIST4<1,2,3,4>::TYPE
+#define myList LIST4<1,3,2,4>::TYPE
 
 template <int n> struct SQUARE {
     static const int VALUE = n*n;
@@ -25,6 +25,8 @@ template <int a, int b> struct MIN {
 };
 
 int main(int argc, char **argv) {
+    std::cout << "The list is: ";
+    ListPrinter<myList>::print();
     std::cout << "head = " << myList::HEAD << std::endl;
     std::cout << "sum = " << myList::SUM << std::endl;
     std::cout << "minimum = " << myList::MINIMUM << std::endl;
