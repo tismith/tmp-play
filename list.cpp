@@ -2,7 +2,7 @@
 #include <climits>
 #include "list.hpp"
 
-#define myList LIST5<10,23,4,2,9>::TYPE
+typedef LIST5<10,23,4,2,9>::TYPE myList;
 
 template <int n> struct SQUARE {
     static const int VALUE = n*n;
