@@ -2,12 +2,14 @@
 #define _CONDITIONAL_H
 
 // dodgy if
-template< bool CONDITION, class THEN, class ELSE > struct IF  {
-    static const int RESULT = THEN::RESULT;
-};
+template< bool CONDITION, class THEN, class ELSE > struct IF {};
 
 template<class THEN, class ELSE> struct IF< false, THEN, ELSE > {
-    static const int RESULT = ELSE::RESULT;
+    typedef ELSE TEST;
+};
+
+template<class THEN, class ELSE> struct IF< true, THEN, ELSE > {
+    typedef THEN TEST;
 };
 
 #endif

@@ -40,20 +40,20 @@ template<int a, int b, int c, int d, int e> struct LIST5 {
 
 // printing lists to std::cout
 template <class L> struct ListPrinter {
-    static void print(void) {
+    static inline void print(void) {
         std::cout << std::endl;
     }
 };
 
 template <int a> struct ListPrinter<LIST<a, EmptyList> > {
-    static void print(void) {
+    static inline void print(void) {
         std::cout << a;
         ListPrinter<EmptyList>::print();
     }
 };
 
 template <int a, class TAIL> struct ListPrinter<LIST<a,TAIL> > {
-    static void print(void) {
+    static inline void print(void) {
         std::cout << a << ", "; 
         ListPrinter<TAIL>::print();
     }

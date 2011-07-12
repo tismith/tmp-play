@@ -10,6 +10,6 @@ struct B {
 };
 
 int main(int argc, char **argv) {
-    std::cout << "true = " << IF<true, A, B>::RESULT << std::endl;
-    std::cout << "true = " << IF<false, A, B>::RESULT << std::endl;
+    std::cout << "true = " << IF<true, A, B>::TEST::RESULT << std::endl;
+    std::cout << "true = " << IF<false, A, B>::TEST::RESULT << std::endl;
 }
