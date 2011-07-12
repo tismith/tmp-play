@@ -155,6 +155,7 @@ struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
 };
 
 //merge sort -- uses split and merge
+//Uses the algorithm from <http://en.literateprograms.org/Merge_sort_(Haskell)>
 template < template <int, int> class P, class L >
 struct SORT {
     typedef typename SPLIT<L>::TYPE SPLIT_LIST;
