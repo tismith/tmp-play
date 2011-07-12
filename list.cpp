@@ -1,7 +1,8 @@
 #include <iostream>
+#include <climits>
 #include "list.hpp"
 
-#define myList LIST< 1, LIST< 2, LIST< 3, LIST <0, EmptyList > > > >
+#define myList LIST4(1,2,3,0)
 
 template <int n> struct SQUARE {
     static const int VALUE = n*n;
@@ -28,8 +29,7 @@ int main(int argc, char **argv) {
     std::cout << "sum = " << myList::SUM << std::endl;
     std::cout << "minimum = " << myList::MINIMUM << std::endl;
     std::cout << "sum of squares = " << MAP_REDUCE< myList, SQUARE, ADDITION, 0 >::RESULT << std::endl;
-    // I wasn't able to pass MAX_INT from <climits> to this template?
-    std::cout << "minimum, map_reduce style = " << MAP_REDUCE< myList, ID, MIN, 32167 >::RESULT << std::endl;
+    std::cout << "minimum, map_reduce style = " << MAP_REDUCE< myList, ID, MIN, INT_MAX >::RESULT << std::endl;
     std::cout << "sum, map_reduce style = " << MAP_REDUCE< myList, ID, ADDITION, 0 >::RESULT << std::endl;
 }
     

@@ -20,6 +20,8 @@ struct MAP_REDUCE {
     static const int RESULT = BASE;
 };
 
+#define LIST4(a, b, c, d) LIST < a, LIST< b, LIST< c, LIST< d, EmptyList > > > >
+
 //include all the template parameters that are used here
 template< int a, class TAIL, template <int> class F, template <int, int> class R , int BASE> 
 //but only specialse based on what the original template defintion was
