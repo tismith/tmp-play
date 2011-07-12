@@ -31,7 +31,7 @@ template<int a, int b, int c, int d> struct LIST4 {
     typedef LIST<a, LIST<b, LIST<c, LIST<d, EmptyList > > > > TYPE;
 };
 template<int a, int b, int c, int d, int e> struct LIST5 {
-    typedef LIST<a, LIST<b, LIST<c, LIST<d, LIST<e EmptyList > > > > > TYPE;
+    typedef LIST<a, LIST<b, LIST<c, LIST<d, LIST<e, EmptyList > > > > > TYPE;
 };
 
 // printing lists to std::cout
