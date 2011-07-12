@@ -54,5 +54,11 @@ int main(int argc, char **argv) {
     ListPrinter<myList::TAIL>::print();
     std::cout << "merge (1,6,8) (6,9) = ";
     ListPrinter<MERGE<ORD, LIST3<1,6,8>::TYPE, LIST2<6,9>::TYPE>::TYPE>::print();
+    std::cout << "fst . split (1,6,8,6,9) = ";
+    ListPrinter<SPLIT<LIST5<1,6,8,6,9>::TYPE>::TYPE::FST>::print();
+    std::cout << "snd . split (1,6,8,6,9) = ";
+    ListPrinter<SPLIT<LIST5<1,6,8,6,9>::TYPE>::TYPE::SND>::print();
+    std::cout << "sort (5,4,6,2,10) = ";
+    ListPrinter<SORT<ORD, LIST5<5,4,6,2,10>::TYPE>::TYPE>::print();
 }
     

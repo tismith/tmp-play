@@ -114,7 +114,24 @@ template <typename A, typename B> struct PAIR {
 };
 
 //split - splits a list into two halves -- needs a PAIR
-//template < class L > struct 
+template < class L > struct SPLIT {};
+
+template <> struct SPLIT <EmptyList> {
+    typedef PAIR<EmptyList, EmptyList> TYPE;
+};
+
+template <int a> struct SPLIT <LIST<a,EmptyList> > {
+    typedef PAIR<LIST<a,EmptyList>, EmptyList> TYPE;
+};
+
+template <int a, int b, typename TAIL> 
+struct SPLIT<LIST<a, LIST<b, TAIL> > > {
+    typedef typename SPLIT<TAIL>::TYPE SPLIT_REC;
+    typedef PAIR<
+        typename PREPEND<a, typename SPLIT_REC::FST>::TYPE, 
+        typename PREPEND<b, typename SPLIT_REC::SND>::TYPE
+        > TYPE;
+};
 
 //merge - take two sorted lists and return a sorted merged list -- needs an IF
 template < template <int, int> class P, class L1, class L2> struct MERGE {};
@@ -135,6 +152,24 @@ struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
             PREPEND< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
             PREPEND< A2, typename MERGE <P, LIST<A1, TAIL1>, TAIL2>::TYPE > >
             ::TEST::TYPE TYPE;
+};
+
+//merge sort -- uses split and merge
+template < template <int, int> class P, class L >
+struct SORT {
+    typedef typename SPLIT<L>::TYPE SPLIT_LIST;
+    typedef typename SORT<P, typename SPLIT_LIST::FST>::TYPE L1;
+    typedef typename SORT<P, typename SPLIT_LIST::SND>::TYPE L2;
+    typedef typename MERGE<P,L1,L2>::TYPE TYPE;
+};
+
+template < template <int, int> class P > struct SORT<P, EmptyList> {
+    typedef EmptyList TYPE;
+};
+
+template < template <int, int> class P, int a> 
+struct SORT<P, LIST<a, EmptyList> > {
+    typedef LIST<a, EmptyList> TYPE;
 };
 
 #endif
