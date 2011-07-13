@@ -1,4 +1,7 @@
-all: fib gcd list conditional
+all: fib gcd list conditional church
+
+church: church.cpp church.hpp
+	$(CXX) -o $@ $<
 
 conditional: conditional.cpp conditional.hpp
 	$(CXX) -o $@ $<
@@ -14,4 +17,4 @@ gcd: gcd.cpp gcd.hpp
 
 .PHONY: clean
 clean: 
-	-rm -rf fib *.o gcd list conditional
+	-rm -rf fib *.o gcd list conditional church
