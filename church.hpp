@@ -23,4 +23,20 @@ struct AND {
     };
 };
 
+//OR = \m\n -> m m n
+struct OR {
+    template <typename M, typename N> struct F {
+        typedef typename M:: template F<M,N>::TYPE TYPE;
+    };
+};
+
+//NOT = \m\a\b -> m b a 
+//Doesn't work, my boolean's are matching the empty definition...
+struct NOT {
+    template <typename C> struct F {};
+};
+template <typename A, typename B, typename M> 
+struct NOT::F <typename M:: template F<A, B> >{
+    typedef typename M:: template F<B,A>::TYPE TYPE;
+};
 #endif
