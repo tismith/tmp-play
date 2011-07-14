@@ -1,4 +1,5 @@
 #include <iostream>
+#include <typeinfo>
 #include "church.hpp"
 
 int main(int argc, char **argv) {

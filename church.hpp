@@ -30,6 +30,7 @@ struct OR {
     };
 };
 
+#if 0
 //NOT = \m\a\b -> m b a 
 //Doesn't work, my boolean's are matching the empty definition...
 struct NOT {
@@ -39,4 +40,5 @@ template <typename A, typename B, typename M>
 struct NOT::F <typename M:: template F<A, B> >{
     typedef typename M:: template F<B,A>::TYPE TYPE;
 };
+#endif
 #endif
