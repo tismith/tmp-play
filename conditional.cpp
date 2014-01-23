@@ -10,13 +10,13 @@ struct B {
 };
 
 struct A1 {
-    static inline int EXEC(void) {
+    static inline void EXEC(void) {
         std::cout << "TRUE!";
     }
 };
 
 struct B1 {
-    static inline int EXEC(void) {
+    static inline void EXEC(void) {
         std::cout << "FALSE!";
     }
 };

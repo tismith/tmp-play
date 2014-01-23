@@ -1,20 +1,20 @@
 all: fib gcd list conditional church
 
-church: church.cpp church.hpp
-	$(CXX) -o $@ $<
+church.cpp: church.hpp
+church: church.cpp
 
-conditional: conditional.cpp conditional.hpp
-	$(CXX) -o $@ $<
+conditional.cpp: conditional.hpp
+conditional: conditional.cpp 
 
-list: list.cpp list.hpp
-	$(CXX) -o $@ $<
+list.cpp: list.hpp
+list: list.cpp 
 
-fib: fib.cpp fib.hpp
-	$(CXX) -o $@ $<
+fib.cpp: fib.hpp
+fib: fib.cpp
 
-gcd: gcd.cpp gcd.hpp
-	$(CXX) -o $@ $<
+gcd.cpp: gcd.hpp
+gcd: gcd.cpp 
 
 .PHONY: clean
 clean: 
-	-rm -rf fib *.o gcd list conditional church
+	-rm -rf *.o fib gcd list conditional church
