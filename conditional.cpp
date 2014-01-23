@@ -23,7 +23,7 @@ struct B1 {
 
 int main(int argc, char **argv) {
     std::cout << "true = " << IF<true, A, B>::TEST::RESULT << std::endl;
-    std::cout << "true = " << IF<false, A, B>::TEST::RESULT << std::endl;
+    std::cout << "false = " << IF<false, A, B>::TEST::RESULT << std::endl;
 
     std::cout << "true = ";
     IF<true, A1, B1>::TEST::EXEC();
