@@ -32,7 +32,7 @@ template <int a, int b> struct ORD {
     static const bool VALUE = a < b;
 };
 
-int main(int argc, char **argv) {
+int main() {
 
     /* The best example */
     std::cout << "The list is: ";

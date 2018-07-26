@@ -10,18 +10,18 @@ struct B {
 };
 
 struct A1 {
-    static inline int EXEC(void) {
+    static inline void EXEC(void) {
         std::cout << "TRUE!";
     }
 };
 
 struct B1 {
-    static inline int EXEC(void) {
+    static inline void EXEC(void) {
         std::cout << "FALSE!";
     }
 };
 
-int main(int argc, char **argv) {
+int main() {
     std::cout << "true = " << IF<true, A, B>::TEST::RESULT << std::endl;
     std::cout << "true = " << IF<false, A, B>::TEST::RESULT << std::endl;
 
