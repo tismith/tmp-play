@@ -2,7 +2,7 @@
 #include <typeinfo>
 #include "church.hpp"
 
-int main(int argc, char **argv) {
+int main() {
     std::cout << "AND(TRUE,TRUE) == ";
     std::cout << (typeid(AND::F<TRUE,TRUE>::TYPE) == typeid(TRUE)); 
     std::cout << std::endl;
@@ -24,4 +24,4 @@ int main(int argc, char **argv) {
     std::cout << (typeid(NOT::F<FALSE>::TYPE) == typeid(TRUE)); 
     std::cout << std::endl;
 #endif
-};
+}
