@@ -44,7 +44,7 @@ int main() {
     /* basic list operations */
     std::cout << "head = " << myList::HEAD << std::endl;
     std::cout << "length = " << myList::LENGTH << std::endl;
-    std::cout << "sum = " << myList::SUM << std::endl;
+    std::cout << "sum = " << SUM< myList >::RESULT << std::endl;
     std::cout << "minimum = " << myList::MINIMUM << std::endl;
 
     /* map-reduce or fold */

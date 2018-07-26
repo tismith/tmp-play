@@ -10,7 +10,6 @@ template< int a, typename L > struct LIST {
     static const int HEAD = a;
     //experimented with putting operations in the nodes
     typedef L TAIL;
-    static const int SUM = a + L::SUM;
     static const int MINIMUM = a < L::MINIMUM ? a : L::MINIMUM;
     static const int LENGTH = 1 + L::LENGTH;
 };
@@ -18,7 +17,6 @@ template< int a, typename L > struct LIST {
 template< int a > struct LIST< a, EmptyList > {
     static const int HEAD = a;
     typedef EmptyList TAIL;
-    static const int SUM = a;
     static const int MINIMUM = a;
     static const int LENGTH = 1;
 };
@@ -82,6 +80,18 @@ struct TAIL<LIST<a,T> > {
     typedef T TYPE;
 };
 
+template< class L> 
+struct SUM {
+	static const int RESULT = 0;
+};  
+
+//include all the template parameters that are used here for 
+//a template specialisation
+template< int a, class TAIL>
+struct SUM< LIST< a, TAIL> > {    
+	static const int RESULT =  a + SUM<TAIL>::RESULT;
+};
+ 
 // map over lists
 template< class L, template <int> class F> 
 struct MAP {
@@ -130,8 +140,8 @@ struct SPLIT<LIST<a, LIST<b, TAIL> > > {
     typedef typename SPLIT<TAIL>::TYPE _SPLIT_REC;
     public:
     typedef PAIR<
-        typename PREPEND<a, typename _SPLIT_REC::FST>::TYPE, 
-        typename PREPEND<b, typename _SPLIT_REC::SND>::TYPE
+        LIST<a, typename _SPLIT_REC::FST>, 
+        LIST<b, typename _SPLIT_REC::SND>
         > TYPE;
 };
 
@@ -151,9 +161,9 @@ struct MERGE< P, L1, EmptyList > {
 template < template <int, int> class P, int A1, class TAIL1, int A2, class TAIL2> 
 struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
     typedef typename IF< P < A1, A2 >::VALUE, 
-            PREPEND< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
-            PREPEND< A2, typename MERGE <P, LIST<A1, TAIL1>, TAIL2>::TYPE > >
-            ::TEST::TYPE TYPE;
+            LIST< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
+            LIST< A2, typename MERGE <P, LIST<A2, TAIL1>, TAIL2>::TYPE > 
+	    >::TEST TYPE;
 };
 
 //merge sort -- uses split and merge

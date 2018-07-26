@@ -13,3 +13,5 @@ There is a compile time GCD calculator in gcd.{c,h}pp
 
 There are some dodgy conditional execution templates in conditional.{c,h}pp
 
+For more information, check the first in a series of blog posts at:
+http://tismith.id.au/2014/template-metaprogramming-fun.html
