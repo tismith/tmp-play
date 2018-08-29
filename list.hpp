@@ -140,8 +140,8 @@ struct SPLIT<LIST<a, LIST<b, TAIL> > > {
     typedef typename SPLIT<TAIL>::TYPE _SPLIT_REC;
     public:
     typedef PAIR<
-        LIST<a, typename _SPLIT_REC::FST>, 
-        LIST<b, typename _SPLIT_REC::SND>
+        typename PREPEND<a, typename _SPLIT_REC::FST>::TYPE, 
+        typename PREPEND<b, typename _SPLIT_REC::SND>::TYPE
         > TYPE;
 };
 
@@ -161,9 +161,9 @@ struct MERGE< P, L1, EmptyList > {
 template < template <int, int> class P, int A1, class TAIL1, int A2, class TAIL2> 
 struct MERGE< P, LIST<A1, TAIL1>, LIST<A2, TAIL2> > {
     typedef typename IF< P < A1, A2 >::VALUE, 
-            LIST< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
-            LIST< A2, typename MERGE <P, LIST<A2, TAIL1>, TAIL2>::TYPE > 
-	    >::TEST TYPE;
+            PREPEND< A1, typename MERGE <P, TAIL1, LIST<A2, TAIL2> >::TYPE >, 
+            PREPEND< A2, typename MERGE <P, LIST<A1, TAIL1>, TAIL2>::TYPE > >
+            ::TEST::TYPE TYPE;
 };
 
 //merge sort -- uses split and merge
